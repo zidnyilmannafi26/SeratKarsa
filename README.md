@@ -181,4 +181,4 @@ Jika model di `.env` tidak tersedia untuk API key Anda, jalankan `python cek_mod
 
 ---
 
-Dibuat oleh **[zidnyilmann26](https://github.com/zidnyilmann26)** sebagai proyek portofolio Data Engineer / Data Scientist.
+Dibuat oleh **[zidnyilmannnafi26](https://github.com/zidnyilmannafi26)** sebagai proyek portofolio Data Engineer / Data Scientist.
