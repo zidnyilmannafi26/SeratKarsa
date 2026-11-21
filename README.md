@@ -8,7 +8,6 @@
 ![Gemini](https://img.shields.io/badge/Google%20Gemini-8E75B2?logo=googlegemini&logoColor=white)
 ![ChromaDB](https://img.shields.io/badge/ChromaDB-Vector%20DB-orange)
 
-> **Serat** berarti benang penyusun kain batik sekaligus naskah pengetahuan. **Karsa** berarti niat dan daya cipta.
 > Serat Karsa menenun data katalog terstruktur (SQL) dan dokumen SOP tidak terstruktur (PDF) menjadi layanan pelanggan otomatis dan *insight* bisnis.
 
 ![Tampilan chatbot](docs/chatbot.png)
