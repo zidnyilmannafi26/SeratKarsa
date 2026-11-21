@@ -1,0 +1,7 @@
+[theme]
+base = "light"
+primaryColor = "#C84B31"              # Merah Terakota: tombol dan aksen
+backgroundColor = "#FFFDF7"           # Putih Mori Gading: latar utama
+secondaryBackgroundColor = "#FFF3E0"  # Krem Sogan: sidebar dan kartu
+textColor = "#2C221E"                 # Cokelat Malam Tua: teks
+font = "sans serif"

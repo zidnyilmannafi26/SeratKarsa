@@ -1,0 +1,15 @@
+# Rahasia: API key jangan pernah di-push
+.env
+
+# Lingkungan Python
+venv/
+__pycache__/
+*.pyc
+
+# Data yang dibuat ulang oleh ETL
+data/serat_karsa.db
+data/chroma_db/
+
+# Lain-lain
+.vscode/
+.DS_Store
