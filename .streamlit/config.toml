@@ -1,7 +1,41 @@
+# Tema batik sogan: versi gelap (dark) dan terang (light).
+# Pengguna bisa beralih lewat menu ⋮ > Settings > Theme.
+# Warna yang sama ada di PALET pada app.py untuk CSS custom dan grafik Plotly.
+
 [theme]
-base = "light"
-primaryColor = "#C84B31"              # Merah Terakota: tombol dan aksen
-backgroundColor = "#FFFDF7"           # Putih Mori Gading: latar utama
-secondaryBackgroundColor = "#FFF3E0"  # Krem Sogan: sidebar dan kartu
-textColor = "#2C221E"                 # Cokelat Malam Tua: teks
-font = "sans serif"
+font = "Plus Jakarta Sans:https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+headingFont = "Outfit:https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800&display=swap"
+codeFont = "JetBrains Mono:https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap"
+headingFontWeights = [800, 700, 600, 600, 600, 600]
+metricValueFontSize = "2.5rem"
+metricValueFontWeight = 700
+baseRadius = "10px"
+showSidebarBorder = true
+
+[theme.dark]
+primaryColor = "#D98E32"              # emas tembaga: tombol & aksen
+backgroundColor = "#1E140D"           # coklat sogan sangat gelap
+secondaryBackgroundColor = "#3A2515"  # coklat tua: kartu & input
+textColor = "#F3E6D3"                 # krem putih
+borderColor = "#6B4A2E"               # coklat sedang
+linkColor = "#D98E32"
+codeBackgroundColor = "#1E140D"
+chartCategoricalColors = ["#D98E32", "#BFA88A", "#F28C1B", "#6B4A2E"]
+
+[theme.dark.sidebar]
+backgroundColor = "#3A2515"
+secondaryBackgroundColor = "#2A1B10"
+
+[theme.light]
+primaryColor = "#A85F16"              # tembaga gelap agar terbaca di krem
+backgroundColor = "#FBF5EA"           # krem muda
+secondaryBackgroundColor = "#F3E6D3"  # krem
+textColor = "#2C1E12"                 # coklat tua
+borderColor = "#D4BC98"
+linkColor = "#A85F16"
+codeBackgroundColor = "#FBF5EA"
+chartCategoricalColors = ["#A85F16", "#7A5E42", "#D86A08", "#D4BC98"]
+
+[theme.light.sidebar]
+backgroundColor = "#F3E6D3"
+secondaryBackgroundColor = "#EADAC2"
