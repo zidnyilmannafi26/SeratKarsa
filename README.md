@@ -98,8 +98,14 @@ SeratKarsa/
 ├── etl_pipeline.py          # Extract-Transform-Load SQL dan PDF
 ├── rag_sql_engine.py        # router hybrid, Text-to-SQL, vector search
 ├── app.py                   # tampilan Streamlit
-├── cek_setup.py             # tes koneksi Gemini
-├── cek_model.py             # daftar model Gemini yang tersedia untuk API key
+├── scripts/
+│   ├── cek_setup.py         # tes koneksi Gemini
+│   └── cek_model.py         # daftar model Gemini yang tersedia untuk API key
+├── eval/
+│   ├── pertanyaan_uji.json  # 25 pertanyaan berlabel rute
+│   └── evaluasi.py          # akurasi router, SQL, dan pencarian SOP
+├── tests/
+│   └── test_validasi_sql.py # tes pagar pengaman Text-to-SQL
 ├── requirements.txt
 └── .env.example             # contoh konfigurasi
 ```
@@ -121,7 +127,7 @@ Python 3.13 ke atas belum disarankan karena beberapa dependensi ChromaDB belum m
 
 ```bash
 # 1. Clone dan masuk ke folder
-git clone https://github.com/zidnyilmann26/SeratKarsa.git
+git clone https://github.com/zidnyilmannafi26/SeratKarsa.git
 cd SeratKarsa
 
 # 2. Buat dan aktifkan virtual environment
@@ -143,7 +149,7 @@ python etl_pipeline.py
 python -m streamlit run app.py
 ```
 
-Jika model di `.env` tidak tersedia untuk API key Anda, jalankan `python cek_model.py` untuk melihat model yang bisa dipakai.
+Jika model di `.env` tidak tersedia untuk API key Anda, jalankan `python scripts/cek_model.py` untuk melihat model yang bisa dipakai.
 
 ## Contoh pertanyaan
 
@@ -171,13 +177,41 @@ Jika model di `.env` tidak tersedia untuk API key Anda, jalankan `python cek_mod
 
 **6. Model embedding dicatat di metadata koleksi.** Pertanyaan harus diubah menjadi vektor dengan model yang sama seperti saat ETL. Nama model disimpan di metadata ChromaDB sehingga engine selalu memakai model yang cocok.
 
-## Keterbatasan dan pengembangan berikutnya
+## Pengujian dan evaluasi
 
-- Data katalog dan pesanan masih dummy dari generator.
-- Belum ada login, sehingga sidebar admin terlihat oleh semua pengguna.
-- Kategori pertanyaan ditentukan oleh router LLM dan belum dievaluasi akurasinya.
-- Rencana: evaluasi otomatis dengan kumpulan pertanyaan uji, autentikasi admin, dan deploy ke Streamlit Community Cloud.
+**Unit test (tanpa API key).** Menguji pagar pengaman Text-to-SQL terhadap kueri berbahaya: `DROP`, multi-statement, `UNION` ke `sqlite_master`, akses `chat_logs`, dan kebocoran data pesanan (`OR 1=1`, `LIKE '#SK-%'`). Dijalankan otomatis oleh GitHub Actions di setiap push.
+
+```bash
+python -m unittest discover tests -v
+```
+
+**Evaluasi chatbot (butuh API key dan ETL).** 25 pertanyaan berlabel rute (SQL, PDF, HYBRID, UMUM) di `eval/pertanyaan_uji.json`. Skrip mengukur akurasi router, persentase SQL yang berhasil dijalankan, dan persentase pertanyaan SOP yang mendapat kutipan. Detail per pertanyaan disimpan ke `eval/hasil_evaluasi.csv`.
+
+```bash
+python eval/evaluasi.py
+```
+
+| Metrik | Hasil |
+| :--- | :--- |
+| Akurasi router | **25/25 (100%)**: SQL 9/9, PDF 9/9, HYBRID 4/4, UMUM 3/3 |
+| SQL berhasil dijalankan | **12/13 (92%)**: satu gagal karena API Gemini `503 UNAVAILABLE`, bukan karena kueri salah |
+| SOP ditemukan | **13/13 (100%)** |
+
+Hasil di atas diambil dari satu kali run dengan `gemini-3.1-flash-lite` (lihat `eval/hasil_evaluasi.csv`). Dengan 25 soal, angka ini menunjukkan sistem berjalan benar, tetapi belum cukup untuk klaim statistik yang kuat.
+
+## Tentang data
+
+Semua data katalog (165 SKU), pesanan (25 order), nama pelanggan, dan dokumen SOP adalah **data sintetis** buatan generator di `etl_pipeline.py` dengan *seed* tetap agar hasil bisa direproduksi. Tidak ada data pelanggan asli. Untuk data nyata, cukup ganti fungsi generator dengan pembaca ekspor toko (CSV, API marketplace, atau database POS); tahap Transform dan Load tidak berubah.
+
+## Keterbatasan dan rencana
+
+- **Validasi SQL berbasis regex.** Cukup untuk kueri buatan LLM dan dilapisi koneksi *read-only*, tetapi bukan parser SQL penuh. Rencana: parsing dengan `sqlglot` dan *allowlist* tabel/kolom.
+- **Privasi pesanan mengandalkan nomor order.** Siapa pun yang tahu nomornya bisa melihat status. Toko nyata perlu verifikasi tambahan (email atau nomor HP).
+- **Belum ada login.** Sidebar admin (ETL, upload SOP) terlihat oleh semua pengguna.
+- **SQLite dan ChromaDB lokal.** Cocok untuk demo satu pengguna. Untuk produksi, pindah ke PostgreSQL + pgvector.
+- **Bergantung pada Gemini tier gratis.** Kena batas kuota dan latensi; evaluasi diberi jeda antarpertanyaan.
+- Rencana lain: deploy ke Streamlit Community Cloud dan evaluasi kualitas jawaban (bukan hanya rute).
 
 ---
 
-Dibuat oleh **[zidnyilmannnafi26](https://github.com/zidnyilmannafi26)** sebagai proyek portofolio Data Engineer / Data Scientist.
+Dibuat oleh **[zidnyilmannafi26](https://github.com/zidnyilmannafi26)** sebagai proyek portofolio Data Engineer / Data Scientist.

@@ -1,0 +1,94 @@
+tanya,label,rute,benar,sql,jumlah_baris,jumlah_kutipan,catatan,jawaban
+Kemeja batik lengan panjang ukuran L masih ada? Harganya berapa?,SQL,SQL,True,"SELECT nama_model, motif, ukuran, harga, stok FROM products WHERE nama_model LIKE '%Kemeja%Batik%Lengan%Panjang%' AND ukuran = 'L' AND stok > 0 LIMIT 20",3,0,,"Masih tersedia. Berikut adalah daftar Kemeja Batik Lengan Panjang ukuran L yang kami miliki:
+
+*   Kemeja Batik Lengan Panjang, motif Parang: Rp330.000
+*   Kemeja Batik Lengan Panjang, motif Sekar Jagad: Rp720.000
+*   Kemeja Batik Lengan Panjang, motif Mega Mendung: Rp285.000"
+Stok blus batik wanita ukuran M ada berapa?,SQL,SQL,True,"SELECT nama_model, motif, ukuran, harga, stok FROM products WHERE nama_model LIKE '%Blus%' AND kategori = 'Wanita' AND ukuran = 'M'",3,0,,"Berikut adalah daftar stok blus batik wanita ukuran M yang tersedia:
+
+*   Blus Batik (Blouse) motif Truntum: Rp270.000 (Stok: 14)
+*   Blus Batik (Blouse) motif Sekar Jagad: Rp270.000 (Stok: 7)
+*   Blus Batik (Blouse) motif Mega Mendung: Rp245.000 (Stok: 17)"
+Batik motif Kawung yang paling murah harganya berapa?,SQL,SQL,True,"SELECT nama_model, motif, ukuran, harga, stok FROM products WHERE motif LIKE '%Kawung%' AND stok > 0 ORDER BY harga ASC LIMIT 20",20,0,,"Batik motif Kawung dengan harga termurah adalah model Batik Kombinasi Polos seharga Rp265.000, tersedia dalam ukuran S, M, L, XL, dan XXL."
+Ada batik tulis bahan sutra?,SQL,SQL,True,"SELECT nama_model, motif, ukuran, harga, stok, jenis_kain, teknik FROM products WHERE teknik = 'Tulis' AND jenis_kain LIKE '%Sutra%' AND stok > 0 LIMIT 20",9,0,,"Tentu, berikut adalah koleksi batik tulis bahan Sutra Baron yang tersedia:
+
+*   **Jas / Outer Batik Pria (Motif Sekar Jagad):**
+    *   Ukuran S, M, L, XXL: Rp1.740.000
+*   **Rok Batik & One Set (Motif Parang):**
+    *   Ukuran S, M, L, XL, XXL: Rp1.285.000
+
+Silakan informasikan model dan ukuran yang Anda minati untuk proses selanjutnya."
+Ukuran XXL untuk kemeja lengan pendek masih tersedia?,SQL,SQL,True,"SELECT nama_model, motif, ukuran, harga, stok FROM products WHERE nama_model LIKE '%Kemeja%Lengan%Pendek%' AND ukuran = 'XXL' AND stok > 0 LIMIT 20",3,0,,"Tersedia, berikut daftar kemeja batik lengan pendek ukuran XXL yang dapat Anda pilih:
+
+*   Kemeja Batik Lengan Pendek motif Parang: Rp375.000 (Stok: 25)
+*   Kemeja Batik Lengan Pendek motif Truntum: Rp260.000 (Stok: 25)
+*   Kemeja Batik Lengan Pendek motif Kawung: Rp270.000 (Stok: 30)"
+Motif Mega Mendung ada di model apa saja?,SQL,SQL,True,"SELECT DISTINCT nama_model, motif, ukuran, harga, stok FROM products WHERE motif LIKE '%Mega Mendung%' LIMIT 20",20,0,,"Tersedia model dengan motif Mega Mendung sebagai berikut:
+
+- Kemeja Batik Lengan Panjang (Rp285.000)
+- Gamis & Dress Batik (Rp385.000)
+- Outer / Cardigan / Blazer Batik (Rp325.000)
+- Kaftan Batik (Rp395.000)"
+Pesanan #SK-103 sudah sampai mana ya?,SQL,SQL,True,"SELECT o.order_id, o.status, o.no_resi, o.kurir, p.nama_model, p.motif, p.ukuran FROM orders o JOIN products p ON o.product_id = p.product_id WHERE o.order_id = '#SK-103'",1,0,"Error: Gemini tidak bisa dihubungi: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}","Maaf, sistem kami sedang sibuk sehingga saya belum bisa menjawab. Silakan coba lagi sebentar lagi ya."
+Minta nomor resi order #SK-112,SQL,SQL,True,"SELECT order_id, nama_pelanggan, status, no_resi, kurir FROM orders WHERE order_id = '#SK-112'",1,0,,"Mohon maaf, Ibu Siti Rahma. Berdasarkan sistem kami, pesanan dengan nomor order #SK-112 berstatus dibatalkan, sehingga tidak tersedia nomor resi untuk pengiriman. Silakan hubungi admin kami untuk informasi lebih lanjut mengenai pembatalan tersebut."
+Status pesanan saya #SK-120 apa?,SQL,SQL,True,"SELECT o.order_id, o.nama_pelanggan, o.status, o.no_resi, p.nama_model, p.motif, p.ukuran FROM orders o JOIN products p ON o.product_id = p.product_id WHERE o.order_id = '#SK-120'",1,0,,"Pesanan Anda dengan nomor #SK-120 atas nama Rizky Maulana saat ini berstatus sedang dikemas. Untuk nomor resi, saat ini belum tersedia karena pesanan masih dalam proses pengemasan."
+"Kalau ukurannya kekecilan, syarat tukar ukurannya apa saja?",PDF,PDF,True,,0,5,,"Untuk menukar ukuran, berikut adalah syarat yang harus dipenuhi:
+
+*   Pengajuan maksimal 3 hari kalender sejak paket diterima (berdasarkan status kurir).
+*   Wajib menyertakan video unboxing tanpa jeda, dimulai dari paket masih tersegel.
+*   Produk belum dicuci, belum dipakai selain untuk mencoba, tidak berbau parfum atau rokok, serta label dan *hangtag* masih terpasang.
+*   Dikembalikan dengan kemasan aslinya.
+*   Tukar ukuran hanya berlaku untuk model dan motif yang sama selama stok tersedia.
+*   Ongkos kirim tukar ukuran ditanggung oleh pelanggan.
+
+Silakan hubungi kami kembali dengan menyertakan nomor order (contoh: #SK-101) dan alasan retur untuk memproses pengajuan Anda."
+Berapa hari batas pengajuan retur?,PDF,PDF,True,,0,5,,"Batas pengajuan retur atau tukar ukuran adalah maksimal 3 hari kalender sejak paket diterima, dihitung berdasarkan status terkirim pada sistem kurir."
+Cara mencuci batik tulis yang benar gimana?,PDF,PDF,True,,0,5,,"Untuk mencuci batik tulis, ikuti langkah-langkah berikut:
+
+*   Cuci dengan tangan menggunakan lerak atau sabun khusus batik.
+*   Jangan gunakan deterjen biasa, pemutih, atau mesin cuci.
+*   Rendam maksimal 15 menit, kucek perlahan, dan jangan diperas atau dipelintir.
+*   Pada 2 sampai 3 cucian pertama, cuci terpisah dari pakaian lain karena sedikit luntur adalah hal yang wajar."
+Apa makna motif Truntum?,PDF,PDF,True,,0,5,,Motif Truntum melambangkan cinta yang tumbuh kembali dan kasih sayang yang tulus.
+Boleh pakai pemutih untuk batik?,PDF,PDF,True,,0,5,,"Mohon maaf, jangan gunakan pemutih untuk batik. Perawatan batik, baik tulis maupun cap, disarankan untuk dicuci dengan tangan menggunakan lerak atau sabun khusus batik agar kualitas warna dan kain tetap terjaga."
+Pengiriman ke luar Jawa biasanya berapa hari?,PDF,PDF,True,,0,5,,Estimasi pengiriman ke luar Pulau Jawa adalah 3 sampai 7 hari kerja.
+Ada promo akhir tahun?,PDF,PDF,True,,0,5,,"Ada, Promo Akhir Tahun Serat Karsa 2026 berlaku mulai 1 Desember hingga 31 Desember 2026 dengan rincian berikut:
+
+*   **Diskon 15%:** Untuk setiap pembelian minimal 2 produk dalam satu pesanan (tidak berlaku kelipatan dan tidak dapat digabung dengan voucher lain).
+*   **Voucher SERATKARSA26:** Potongan Rp50.000 untuk pembelian pertama dengan minimal belanja Rp300.000 (hanya berlaku satu kali per pelanggan).
+*   **Gratis Ongkir:** Untuk pengiriman ke seluruh Pulau Jawa dengan minimal belanja Rp500.000 setelah diskon."
+Panduan ukuran lingkar dada untuk size L berapa?,PDF,PDF,True,,0,5,,"Untuk panduan lebar dada ukuran L, ketentuannya adalah:
+
+*   Kemeja Pria: 56 cm
+*   Atasan Wanita: 52 cm
+
+Terdapat toleransi ukuran sebesar 1 sampai 2 cm karena proses jahit. Jika ukuran badan Anda berada di antara dua ukuran, disarankan memilih ukuran yang lebih besar, terutama untuk bahan Katun Primisima yang tidak melar."
+Motif apa yang kurang cocok untuk kondangan?,PDF,PDF,True,,0,5,,"Menurut panduan kami, motif Parang kurang dianjurkan untuk dipakai tamu di acara pernikahan atau kondangan."
+Rekomendasi batik wanita untuk kondangan yang ready ukuran M dong,HYBRID,HYBRID,True,"SELECT nama_model, motif, ukuran, harga, stok FROM products WHERE kategori = 'Wanita' AND ukuran = 'M' AND stok > 0 AND nama_model IN ('Gamis & Dress Batik', 'Kaftan Batik', 'Model Kutubaru') AND motif IN ('Truntum', 'Sekar Jagad') ORDER BY nama_model, harga LIMIT 20",4,5,,"Berikut adalah pilihan produk wanita ukuran M yang disarankan untuk kondangan sesuai dengan motif dan model yang tepat:
+
+*   **Kaftan Batik** (Motif Truntum): Rp380.000
+*   **Gamis & Dress Batik** (Motif Sekar Jagad): Rp385.000
+*   **Model Kutubaru** (Motif Truntum): Rp470.000
+*   **Model Kutubaru** (Motif Sekar Jagad): Rp715.000"
+Batik pria buat wisuda yang stok L-nya ada apa saja?,HYBRID,HYBRID,True,"SELECT nama_model, motif, ukuran, harga, stok FROM products WHERE kategori = 'Pria' AND ukuran = 'L' AND stok > 0 AND nama_model IN ('Kemeja Batik Lengan Panjang') AND motif IN ('Parang', 'Sekar Jagad') ORDER BY nama_model, harga LIMIT 20",2,5,,"Untuk acara wisuda, berikut adalah pilihan kemeja batik pria ukuran L yang kami rekomendasikan:
+
+*   Kemeja Batik Lengan Panjang motif Parang: Rp330.000
+*   Kemeja Batik Lengan Panjang motif Sekar Jagad: Rp720.000"
+"Mau batik untuk acara kantor formal, ukuran XL, yang tersedia apa?",HYBRID,HYBRID,True,"SELECT nama_model, motif, ukuran, harga, stok FROM products WHERE ukuran = 'XL' AND stok > 0 AND ( (kategori = 'Pria' AND nama_model IN ('Kemeja Batik Lengan Panjang', 'Jas / Outer Batik Pria') AND motif IN ('Kawung', 'Parang')) OR (kategori = 'Wanita' AND nama_model IN ('Tunik Batik', 'Blus Batik', 'Outer / Cardigan / Blazer Batik') AND motif IN ('Kawung', 'Parang')) ) ORDER BY nama_model, harga LIMIT 20",5,5,,"Berikut adalah pilihan produk batik ukuran XL yang sesuai untuk acara kantor formal:
+
+*   **Jas / Outer Batik Pria** (Motif Kawung): Rp495.000
+*   **Kemeja Batik Lengan Panjang** (Motif Parang): Rp330.000
+*   **Outer / Cardigan / Blazer Batik** (Motif Kawung): Rp785.000
+*   **Tunik Batik** (Motif Kawung): Rp440.000
+*   **Tunik Batik** (Motif Parang): Rp275.000"
+Batik yang cocok buat lamaran dan masih ada stok ukuran S?,HYBRID,HYBRID,True,"SELECT nama_model, motif, ukuran, harga, stok FROM products WHERE stok > 0 AND ukuran = 'S' AND (nama_model IN ('Kemeja Batik Lengan Panjang', 'Batik Kombinasi Polos', 'Gamis & Dress Batik', 'Kaftan Batik', 'Model Kutubaru') AND motif IN ('Truntum', 'Sekar Jagad')) ORDER BY nama_model, harga LIMIT 20",6,5,,"Berikut adalah pilihan batik ukuran S yang cocok untuk acara lamaran (menggunakan motif Truntum atau Sekar Jagad):
+
+*   **Kaftan Batik** (Motif Truntum): Rp380.000
+*   **Gamis & Dress Batik** (Motif Sekar Jagad): Rp385.000
+*   **Batik Kombinasi Polos** (Motif Sekar Jagad): Rp425.000
+*   **Model Kutubaru** (Motif Truntum): Rp470.000
+*   **Model Kutubaru** (Motif Sekar Jagad): Rp715.000
+*   **Kemeja Batik Lengan Panjang** (Motif Sekar Jagad): Rp720.000"
+"Halo kak, selamat pagi",UMUM,UMUM,True,,0,0,,"Halo, selamat pagi! Ada yang bisa Karsa bantu terkait koleksi batik di Serat Karsa hari ini?"
+Terima kasih banyak ya,UMUM,UMUM,True,,0,0,,"Sama-sama! Senang bisa membantu Anda. Jika ada hal lain yang perlu ditanyakan seputar produk atau pesanan di Serat Karsa, silakan sampaikan ya."
+Siapa presiden pertama Indonesia?,UMUM,UMUM,True,,0,0,,"Mohon maaf, sebagai asisten layanan pelanggan ""Serat Karsa"", saya hanya dapat membantu Anda terkait informasi produk batik, pemesanan, dan layanan toko kami. Untuk pertanyaan tersebut, mohon maaf saya tidak memiliki informasinya. Apakah ada yang bisa saya bantu terkait koleksi batik kami?"
