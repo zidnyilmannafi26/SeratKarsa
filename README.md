@@ -89,7 +89,7 @@ flowchart LR
 ## Struktur folder
 
 ```text
-serat-karsa-ai/
+SeratKarsa/
 ├── .streamlit/config.toml   # tema warna batik pesisir
 ├── data/
 │   ├── sop/                 # PDF SOP (ikut di-commit)
@@ -122,8 +122,8 @@ Python 3.13 ke atas belum disarankan karena beberapa dependensi ChromaDB belum m
 
 ```bash
 # 1. Clone dan masuk ke folder
-git clone https://github.com/<username-github>/serat-karsa-ai.git
-cd serat-karsa-ai
+git clone https://github.com/zidnyilmann26/SeratKarsa.git
+cd SeratKarsa
 
 # 2. Buat dan aktifkan virtual environment
 python -m venv venv
@@ -181,5 +181,4 @@ Jika model di `.env` tidak tersedia untuk API key Anda, jalankan `python cek_mod
 
 ---
 
-Dibuat oleh **<Nama Kamu>** sebagai proyek portofolio Data Engineer / Data Scientist.
-[LinkedIn](https://linkedin.com/in/<username>) · [GitHub](https://github.com/<username-github>)
+Dibuat oleh **[zidnyilmann26](https://github.com/zidnyilmann26)** sebagai proyek portofolio Data Engineer / Data Scientist.
